@@ -10,7 +10,7 @@ use App\Book;
 
 class EditBookRequest extends Request {
 
-	const MAX_CONTENT_FILE_SIZE			= 10240; 	// 10240 kb = 10 mb
+	const MAX_CONTENT_FILE_SIZE		= 10240; 	// 10240 kb = 10 mb
 	const MAX_COVER_IMAGE_FILE_SIZE		= 500; 		//  500 kb
 
 	/**
@@ -144,7 +144,8 @@ class EditBookRequest extends Request {
 					$validator->errors ()->add('image_file', 'Ensure your cover image meets height and width requirements.');
 				}
 			}
-        });
+		}
+        );
 
         return $validator;
 	}
@@ -159,14 +160,14 @@ class EditBookRequest extends Request {
 		$this->sanitize();
 
 		$general_rules = [
-			'title' 			=> 'required|min:2|max:255',
+			'title' 		=> 'required|min:2|max:255',
 			'co_authors' 		=> 'min:3|max:255',
 			'series_name' 		=> 'min:2|max:255|required_with:series_number',
 			'series_number' 	=> 'numeric|min:0|max:9999.99',
 			'word_count' 		=> 'numeric|min:0|max:999999999',
 			'page_count' 		=> 'numeric|min:0|max:999999999',
 			'accept_terms' 		=> 'accepted',
-			'language' 			=> 'alpha',
+			'language' 		=> 'alpha',
 			'image_file' 		=> 'image|mimes:jpeg|min:0|max:' . CreateBookRequest::MAX_COVER_IMAGE_FILE_SIZE,
 		];
 
@@ -198,11 +199,11 @@ class EditBookRequest extends Request {
 		$general_messages = [
 			'co_authors.min' 			=> 'The co-author field must be at least :min characters.',
 			'co_authors.max'			=> 'The co-author field must be at most :max characters.',
-			'series_name.required_with' => "You must enter a series name if you have a series number.",
+			'series_name.required_with' 		=> "You must enter a series name if you have a series number.",
 			'series_number.min'			=> 'The series number must be a positive number.',
 			'word_count.min'			=> 'The word count must be a positive number.',
 			'page_count.min'			=> 'The page count must be a positive number.',
-			'accept_terms.accepted'		=> 'You must accept the terms of agreement.',
+			'accept_terms.accepted'			=> 'You must accept the terms of agreement.',
 			'image_file.mimes'			=> 'Invalid mime type.',
 			'image_file.max'			=> 'Exceeded max file size of :max KB.',
 		];
