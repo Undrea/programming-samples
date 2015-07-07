@@ -1,0 +1,311 @@
+/*******************************************
+	Global Constants
+*******************************************/
+
+$main_width: 890px;
+$text_main_colour: #222222;
+$font_size: 1em;
+
+$profile_bar_height: 2.5em;
+$profile_bar_colour: #262626
+$profile_bar_bg_colour: #dedede;
+
+$nav_text_color: #222;
+$nav_border_color: #ddd;
+$nav_bg_color: #eee;
+
+/*******************************************
+	General
+*******************************************/
+
+body {
+	background-color: #f3f3f3;
+	font-family: 'PT sans', sans-serif; /* Default font */
+	margin: auto 0 auto 0;
+	font-size: 16px; /* Global PX font size - related to EMs */
+	margin-top: $profile_bar_height;
+}
+
+.main_width_wrapper {
+	max-width: $main_width;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+//
+// Abbreviated for demonstration purposes...
+//
+
+/*******************************************
+	Navigation
+		Adapted from: http://osvaldas.info/drop-down-navigation-responsive-and-touch-friendly
+*******************************************/
+
+#nav
+{
+	background-color: $nav_bg_color;
+	height: 3em;
+	margin-bottom: 1px;
+	margin: 1px 0 0 0;
+	z-index: 1;
+
+	border-bottom: 1px solid $nav_border_color;
+
+	.inner_wrapper {
+		@extend .main_width_wrapper;
+
+		> a { /* Hide the "show/hide" navigation anchors */
+			display: none;
+		}
+
+		ul {
+			display: block;
+			margin: 0 auto;
+			width: 100%;
+		}
+		li	{
+			position: relative;
+
+			/* Main bar text */
+			a	{
+				color: $nav_text_color;
+				display: block;
+				height: 100%;
+				text-decoration: none;
+			}
+
+			a:active {
+				/* background-color: #c00 !important; */
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 0 0 2px #999;
+				-moz-box-shadow: 0 0 2px #999;
+				box-shadow: 0 0 2px #999;
+				background-color: #ddd;
+			}
+		} /* end li */
+
+		/* down caret */
+		span:after
+		{
+			border: 0.4em solid transparent;
+			border-bottom: none;
+			border-top-color: $nav_text_color;
+			content: '';
+			display: inline-block;
+			height: 0;
+			position: relative;
+			right: -0.4em;
+			vertical-align: middle;
+			width: 0;
+		}
+
+		/* first level */
+		> ul
+		{
+			background-color: transparent;
+			float: right;
+			height: 100%;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			position: relative;
+
+			> :first-child {
+				border-left: 1px solid $nav_border_color;
+			}
+
+			> :last-child {
+				border-right: 1px solid $nav_border_color;
+			}
+
+
+			li+li {
+				border-left: 1px solid $nav_border_color;
+			}
+
+			> li
+			{
+				list-style-type: none;
+				float: left;
+				height: 100%;
+				list-style-type: none;
+
+				/* each first level list item */
+				> a
+				{
+					background-color: transparent;
+					display: block;
+					height: 100%;
+					padding: 15px 20px;
+					text-align: center;
+
+				}
+			}/* end > li */
+
+			/* main nav bar hover and active effect */
+			> li:hover,
+			&:not( :hover ) > li.active
+			{
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 0 0 2px #999;
+				-moz-box-shadow: 0 0 2px #999;
+				box-shadow: 0 0 2px #999;
+			}
+		} /* end > ul */
+
+		/* second level */
+		/* elements in nav secondary menus */
+		li ul
+		{
+			background-color: #cdcdcd;
+			display:none;
+			margin: 0px;
+			padding: 0px;
+			position: absolute;
+			text-align: center;
+
+			a {
+				font-size: 1em;
+				padding: 10px 0px;
+			}
+
+			/* secondary nav element on hover effect */
+			li a:hover,
+			&:not( :hover ) li.active a
+			{
+				background-color: #ddd;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+			}
+		} /* end li ul */
+
+		/* when hovering main nav item and showing secondary items */
+		li:hover ul
+		{
+			display: block;
+			left: 0;
+			right: 0;
+			padding: 5px 0px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			-webkit-box-shadow: 0 0 2px #999;
+			-moz-box-shadow: 0 0 2px #999;
+			box-shadow: 0 0 2px #999;
+		}
+	} /* end inner_wrapper */
+} /* end #nav */
+
+@media ( max-width: 650px ) { /* Create [=] box when page < 650px */
+    #nav
+	{
+		position: relative;
+
+		.inner_wrapper {
+			width:auto;
+			margin: auto;
+
+			/* Make the menu box */
+	        > a
+			{
+				/* Positioning */
+				position: absolute;
+				right: 0px;
+				width: 6em;
+				height: 3em;
+				/* Shape of menu button */
+				background-color: #e15a1f;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 0 0 2px #999;
+				-moz-box-shadow: 0 0 2px #999;
+				box-shadow: 0 0 2px #999;
+				background-color: #eee;
+				/* Text */
+				color: #555;
+				text-decoration: none;
+				text-align: right;
+				font: 1em 'Raleway', sans-serif;
+				padding: 0.938em 0.625em 0.938em 0.625em;
+				margin: 0px;
+				background: #eee url("../img/nav-icon.png") no-repeat 0.5em;
+				background-size: 1.8em 1.8em;
+			}
+			&:not( :target ) > a:first-of-type,
+			&:target > a:last-of-type
+			{
+	            display: block;
+	        }
+
+		    /* first level */
+		    > ul
+			{
+				width: 10em;
+				height: auto;
+				display: none;
+				position: absolute;
+
+				right: 0;
+				margin-top: 3em;
+				padding: 5px 0px;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 0 0 2px #999;
+				-moz-box-shadow: 0 0 2px #999;
+				box-shadow: 0 0 2px #999;
+				background-color: #f7f7f7;
+			}
+		        &:target > ul
+				{
+					display: block;
+				}
+		        > ul > li
+				{
+					width: 100%;
+					float: none;
+				}
+
+		    /* second level */
+		    li ul
+			{
+				position: static;
+			}
+			li ul li{
+
+			}
+			li ul a
+			{
+				padding: 5px 0px;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+			}
+		} /* end inner_wrapper */
+	} /* end #nav */
+
+}
+
+@media ( min-width: 650px ) and (max-width: 750px) { /* Shrink nav menu items when page 650px - 750*/
+
+	#nav {
+		/* first level */
+		> ul > li > a
+		{
+			font-size: 0.8em;
+			padding-top: 15px;
+		}
+		/* second level */
+		li ul a
+		{
+			font-size: 0.8em;
+			padding: 10px 0px;
+		}
+	}
+}
