@@ -41,9 +41,9 @@ function checkLogin(event)
 				if($("#login_box div p.form_p_error").length < 1)
 				{
 					// Create DOM element.
-					var error_message 		= document.createElement("P");
+					var error_message 	= document.createElement("P");
 					error_message.className = "form_p_error";
-					var text_message 		= document.createTextNode("Incorrect email and/or password.");
+					var text_message 	= document.createTextNode("Incorrect email and/or password.");
 					error_message.appendChild(text_message);
 
 					// Animate Entrance.
